@@ -378,7 +378,6 @@ class TestCheckers(unittest.TestCase):
     def test_black_tile_has_piece_on_location_3_8(self):
         self.assertIsNotNone(self.board[3][8].get_piece())
 
-
     def test_black_tile_has_piece_on_location_6_1(self):
         self.assertIsNotNone(self.board[6][1].get_piece())
 
@@ -439,6 +438,39 @@ class TestCheckers(unittest.TestCase):
     def test_black_tile_has_piece_on_location_9_8(self):
         self.assertIsNotNone(self.board[9][8].get_piece())
 
+## black tile does not have a piece after fill_board()
+    def test_black_tile_has_no_piece_on_location_4_1(self):
+        self.assertIsNone(self.board[4][1].get_piece())
 
+    def test_black_tile_has_no_piece_on_location_4_3(self):
+        self.assertIsNone(self.board[4][3].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_4_5(self):
+        self.assertIsNone(self.board[4][5].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_4_7(self):
+        self.assertIsNone(self.board[4][7].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_4_9(self):
+        self.assertIsNone(self.board[4][9].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_5_0(self):
+        self.assertIsNone(self.board[5][0].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_5_2(self):
+        self.assertIsNone(self.board[5][2].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_5_4(self):
+        self.assertIsNone(self.board[5][4].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_5_6(self):
+        self.assertIsNone(self.board[5][6].get_piece())
+
+    def test_black_tile_has_no_piece_on_location_5_8(self):
+        self.assertIsNone(self.board[5][8].get_piece())
+
+
+
+#Run all tests
 if __name__ == '__main__':
     unittest.main()
