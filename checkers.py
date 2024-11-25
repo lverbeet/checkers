@@ -69,9 +69,9 @@ class Piece:
 
 ##Tile:
 class Tile:
-    def __init__(self, color: TileColor, location: Location):
+    def __init__(self, location: Location):
         self.__piece = None
-        self.__color = color
+        self.__color = None
         self.__location = location
 
     def get_color(self):
@@ -88,6 +88,13 @@ class Tile:
             return False
         else:
             return True
+
+    #Set color by using modulo check on x & y from the location object
+    def set_color(self):
+        if (self.__location.get_x() + self.get_location().get_y()) % 2 == 0:
+            self.__color = TileColor.WHITE
+        else:
+            self.__color = TileColor.BLACK
 
     def remove_piece(self):
         self.__piece = None
@@ -124,18 +131,19 @@ class GameBoard:
     def get_pieces(self):
         return self.__pieces
 
+    def add_new_piece(self, piece: Piece):
+        self.__pieces.append(piece)
+
     # fill_board():
     def fill_board(self):
         row = []
         for x in range(self.__length):
             for y in range(self.__length):
-                color = None
-                if (x + y) % 2 == 0:
-                    color = TileColor.WHITE
-                else:
-                    color = TileColor.BLACK
+                # create new tile object
+                current_tile = Tile(Location(x, y))
+                # Set tile color
+                current_tile.set_color()
 
-                tile = Tile(color, Location(x, y))
                 piece = None
 
                 if x <= 3 and (x + y) % 2 != 0:
@@ -145,10 +153,10 @@ class GameBoard:
                     piece = Piece(PieceColor.WHITE, Location(x, y))
 
                 if piece is not None:
-                    tile.place_piece(piece)
-                    self.__pieces.append(piece)
+                    current_tile.place_piece(piece)
+                    self.add_new_piece(piece)
 
-                row.append(tile)
+                row.append(current_tile)
 
                 if y == 9:
                     self.__Board.append(row)
