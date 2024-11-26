@@ -124,6 +124,7 @@ class GameBoard:
         self.__Board = []
         self.__length = 10
         self.__pieces = []
+        self.__moves = []
 
     def get_board(self):
         return self.__Board
@@ -143,22 +144,22 @@ class GameBoard:
                 current_tile = Tile(Location(x, y))
                 # Set tile color
                 current_tile.set_color()
-
+                # init piece object
                 piece = None
-
+                # places red pieces on the first four rows on the black tiles
                 if x <= 3 and (x + y) % 2 != 0:
                     piece = Piece(PieceColor.RED, Location(x, y))
-
+                # places red pieces on the first four rows on the black tiles
                 if x >= 6 and (x + y) % 2 != 0:
                     piece = Piece(PieceColor.WHITE, Location(x, y))
-
+                # add piece to array and add it to the current tile if piece is not None
                 if piece is not None:
                     current_tile.place_piece(piece)
                     self.add_new_piece(piece)
-
+                # add tile to current row
                 row.append(current_tile)
-
-                if y == 9:
+                # checks if the end location of the current row has been reached to then add the current row and init a new row.
+                if y == self.__length - 1:
                     self.__Board.append(row)
                     row = []
 

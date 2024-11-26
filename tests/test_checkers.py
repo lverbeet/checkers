@@ -12,9 +12,10 @@ class TestCheckers(unittest.TestCase):
         game_board.fill_board()
         #filled board object
         cls.board = game_board.get_board()
-
+        #
+        cls.pieces = game_board.get_pieces()
 #Tests
-## check if location on the board has a white color as intended after fill_board()
+## check if tile location on the board has a white color as intended after fill_board()
     def test_tile_color_is_white_on_location_0_0(self):
         self.assertEqual(self.board[0][0].get_color(),TileColor.WHITE)
 
@@ -468,6 +469,10 @@ class TestCheckers(unittest.TestCase):
 
     def test_black_tile_has_no_piece_on_location_5_8(self):
         self.assertIsNone(self.board[5][8].get_piece())
+#Test pieces.
+    def test_that_all_40_pieces_are_added_to_the_list(self):
+        self.assertEqual(self.pieces.__len__(),40)
+
 
 
 
